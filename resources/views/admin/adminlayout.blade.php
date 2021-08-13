@@ -17,22 +17,24 @@
 </head>
 <body>
 <!-- debut corps -->
-<div class="container-fluid">
-    <div class="dash">
+<div class="container-fluid admindash">
+    <div class="dash shadow">
         <p>
-            <img src="{{ asset('ressources/images/logo.png')}}" alt="image" class="" width="40%">
-
+        <a  href="/">
+            <img src="{{ asset('ressources/images/logo.png')}}" alt="image" class="" width="30%">
+        </a>
         </p>
         <ul class="mt-5">
-            <li class="mb-3 ml-3"><a href="{{route('admin')}}">statistique</a></li>
-            <li class="mb-3 ml-3"><a href="{{route('admin-category.create')}}">Categories</a></li>
-            <li class="mb-3 ml-3"><a href="{{route('admin.chefs')}}">Chefs</a></li>
-            <li class="mb-3 ml-3"><a href="{{route('message')}}">Message</a></li>
+            <li class="mb-3 {{(request()->segment(1) == 'admin' && request()->segment(2)==null) ? 'actv' : ''}}" ><a href="{{route('admin')}}">statistique</a></li>
+            <li class="mb-3  {{(request()->segment(1) == 'admin-category') ? 'actv' : ''}}"><a href="{{route('admin-category.create')}}">Categories</a></li>
+            <li class="mb-3 {{(request()->segment(2) == 'chefs') ? 'actv' : ''}}"><a href="{{route('admin.chefs')}}">Chefs</a></li>
+            <li class="mb-3 {{(request()->segment(2) == 'message') ? 'actv' : ''}}"><a href="{{route('message')}}">Message</a></li>
         </ul>
     </div>
-    <div class="row justify-content-end panel p-2 pr-4">
-        <a  href="{{ route('logout') }}" class=""   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" style="text-decoration: none; color: rgb(255, 255, 255);">logout</a>
+    <div class="row justify-content-end panel shadow p-2 pr-4">
+    <a href="#menu-t" class="btn btn-default" id="menu-t"><em class="fa fa-bars"></em></a>
+        <a  href="{{ route('logout') }}" class="logout"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" style="text-decoration: none;"><em class="fa fa-power-off mr-1"></em>Se deconnecter</a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
         </form>
@@ -45,6 +47,11 @@
 
 </div>
 <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-
+<script>
+    $("#menu-t").click(function(e) {
+        e.preventDefault();
+        $(".admindash").toggleClass("dashmobile");
+    });
+</script>
 </body>
 </html>

@@ -25,28 +25,28 @@
 	<!-- Collection of nav links, forms, and other content for toggling -->
 	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
 		<div class="navbar-nav">
-			<a href="/" class="nav-item nav-link">Accueil</a>
-			<a href="/noschefs" class="nav-item nav-link ">Nos-chefs</a>
-			<a href="/apropos" class="nav-item nav-link">Apropos</a>
-			<a href="/contacterN" class="nav-item nav-link">Contacter-Nous</a>
+			<a href="/" class="nav-item nav-link {{(request()->segment(1) == null) ? 'activ' : ''}}">Accueil</a>
+			<a href="/noschefs" class="nav-item nav-link {{(request()->segment(1) == 'noschefs') ? 'activ' : ''}}">Nos-chefs</a>
+			<a href="/apropos" class="nav-item nav-link {{(request()->segment(1) == 'apropos') ? 'activ' : ''}}">Apropos</a>
+			<a href="/contacterN" class="nav-item nav-link {{(request()->segment(1) == 'contacterN') ? 'activ' : ''}}">Contacter-Nous</a>
         </div>
 
 		<div class="navbar-nav ml-auto action-buttons">
         @guest
            @if (Route::has('login'))
-           <a href="{{ route('panier') }}" class="nav-item nav-link"><img src="{{ asset('ressources/images/crd.png') }}" alt=""><span class="my-card">{{ count((array) session('cart')) }}</span></a>
+           <a href="{{ route('panier') }}" class="nav-item nav-link m-1"><img src="{{ asset('ressources/images/crd.png') }}" alt=""><span class="my-card">{{ count((array) session('cart')) }}</span></a>
            <div class="nav-item ">
-				<a  href="{{ route('login') }}"  class="btn btn-primary  sign-up-btn">Se connecter</a>
+				<a  href="{{ route('login') }}"  class="btn btn-primary m-1">Se connecter</a>
 			</div>
             @endif
 
             @if (Route::has('register'))
                 <div class="nav-item ">
-                    <a  href="{{ route('register') }}"  class="btn btn-primary  mr-4">Creer compte</a>
+                    <a  href="{{ route('register') }}"  class="btn btn-primary  m-1 mr-4">Creer compte</a>
                 </div>
             @endif
             @else
-            <a href="{{ route('panier') }}" class="nav-item nav-link"><img src="{{ asset('ressources/images/crd.png') }}" alt=""><span class="my-card">{{ count((array) session('cart')) }}</span></a>
+            <a href="{{ route('panier') }}" class="nav-item nav-link "><img src="{{ asset('ressources/images/crd.png') }}" alt=""><span class="my-card">{{ count((array) session('cart')) }}</span></a>
             <a href="{{ route('wish') }}"  style="color:#bd2c29;float:right; padding:0;"><i class="fa fa-heart-o " style="font-size: 2em;"></i></a>
             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -88,7 +88,7 @@
 
 <!-- debut footer -->
 
-<div class="footer-dari">
+<div class="footer-dark">
     <footer>
         <div class="container">
             <div class="row">
@@ -123,6 +123,7 @@
 
 @yield('scripts')
 
+
 <!-- icon reseaux sociaux -->
 <script src="{{asset('js/app.js')}}"></script>
 <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
@@ -130,5 +131,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<script>
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-12 command">
 <div class="table-responsive">
-<table class="table table-sm table-dark">
+<table class="table table-sm">
   <thead>
     <tr>
       <th scope="col"></th>
@@ -23,16 +23,16 @@
       <td>{{$order->plat->name}}</td>
       <td>{{$order->quantity}}</td>
       <td>{{$order->created_at}}</td>
-      <td>{{$order->created_at}}</td>
-      <td><a href="#">voir</a></td>
+      <td>{{$order->date_livraison}}</td>
+      <td><a href="{{route('adress-command',$order->adress_id)}}">voir</a></td>
       <td>{{$order->quantity * $order->plat->price }}</td>
       <td class="d-flex">
       @if($order->status == 0)
-      <a href="{{url('command/update/'.$order->id .'/1')}}" class="btn">Accepter</a>
+      <a href="{{url('command/update/'.$order->id .'/1')}}" style="max-width:90px" class="btn btn-danger m-2">Accepter</a>
       @elseif($order->status == 1)
-      <a href="{{url('command/update/'.$order->id .'/2')}}" class="btn">Envoyer</a>
+      <a href="{{url('command/update/'.$order->id .'/2')}}" style="width:90px" class="btn btn-primary m-2">Envoyer</a>
       @else
-      <span>Livre</span>
+      <span class="btn btn-info m-2" style="width:90px">Livré</span>
     @endif
     </td>
     </tr>

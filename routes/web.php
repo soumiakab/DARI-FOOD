@@ -32,9 +32,7 @@ Route::get('/chef/platdetails/{id}', [App\Http\Controllers\PlatController::class
 Route::get('/user/platdetails/{id}', [App\Http\Controllers\PlatController::class, 'show'])->name('user-plat');
 Route::get('/chef/supplat/{id}', [App\Http\Controllers\PlatController::class, 'destroy'])->name('chef-plat_sup');
 
-// Route::get('/profilchef', function () {
-//     return view('chefs.chefInformations');
-// });
+Route::get('/checkout', [App\Http\Controllers\CommandController::class, 'create'])->name('checkout');
 
 Route::get('/profilchef', [App\Http\Controllers\ChefController::class, 'show'])->middleware('auth');
 Route::get('/noschefs', [App\Http\Controllers\ChefController::class, 'index']);
@@ -47,8 +45,10 @@ Route::get('wish', [App\Http\Controllers\WishController::class, 'index'])->name(
 Route::get('panierData', [App\Http\Controllers\CartController::class, 'panierData'])->name('panierData');
 Route::get('wishesData', [App\Http\Controllers\WishController::class, 'wishesData'])->name('wishesData');
 Route::post('/addcart', [App\Http\Controllers\CartController::class, 'addToCart']);
+Route::get('/add/{id}/{qt}', [App\Http\Controllers\CartController::class, 'add'])->name('add');
 Route::get('/total', [App\Http\Controllers\CartController::class, 'total']);
-Route::get('/savecommand', [App\Http\Controllers\CommandController::class, 'storecommand']);
+// Route::get('/savecommand/{adress?}', [App\Http\Controllers\CommandController::class, 'storecommand'])->name('savecommand');
+Route::post('/savecommand', [App\Http\Controllers\CommandController::class, 'storecommand'])->name('savecommand');
 Route::post('/contact-store', [App\Http\Controllers\ContactController::class, 'store']);
 Route::post('update-cart', [App\Http\Controllers\CartController::class, 'update'])->name('update.cart');
 Route::delete('remove-cart', [App\Http\Controllers\CartController::class, 'remove']);
@@ -58,8 +58,9 @@ Route::post('/addwish', [App\Http\Controllers\WishController::class, 'addTowish'
 Route::post('/remove-wish', [App\Http\Controllers\WishController::class, 'remove']);
 
 
-Route::get('order/{id}', [App\Http\Controllers\OrderController::class, 'storeOrd']);
+Route::get('order/{id}/{adress}/{livraison}', [App\Http\Controllers\OrderController::class, 'storeOrd']);
 Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index']);
+Route::get('/adress-command/{id}', [App\Http\Controllers\AdressController::class, 'index'])->name('adress-command');
 
 
 
@@ -69,7 +70,7 @@ Route::get('category', [App\Http\Controllers\CategoryController::class,'index'])
 // Route::get('/chef/profil/{id}', function () {
 //     return view('chefs.chefProfile');
 // });
-Route::get('/chef/profil/{id}', [App\Http\Controllers\ChefController::class, 'profil']);
+Route::get('/chef/profil/{id}', [App\Http\Controllers\ChefController::class, 'profil'])->name('profilchef');
 
 
 

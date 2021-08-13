@@ -14,6 +14,7 @@ class order extends Model
         'quantity',
         'user_id',
         'adress_id',
+        'date_livraison',
     ];
 
     public function plat()

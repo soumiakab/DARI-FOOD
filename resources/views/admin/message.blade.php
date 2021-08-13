@@ -4,7 +4,7 @@
 
 <div class="col-12 ">
 <div class="table-responsive">
-<table class="table table-sm table-dark">
+<table class="table table-sm ">
   <thead>
     <tr>
       <th scope="col">email</th>

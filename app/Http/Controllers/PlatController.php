@@ -30,6 +30,7 @@ class PlatController extends Controller
         // $products = Product::all();
         // $categories=Category::all();
         // ddd($categories[0]->products());
+
         $products = Plat::with('category')->get();
         // return view('users.plats', ['products' => $products]);
         return response()->json($products);

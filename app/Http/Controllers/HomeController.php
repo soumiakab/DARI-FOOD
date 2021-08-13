@@ -28,6 +28,6 @@ class HomeController extends Controller
 
     public function handleChef()
     {
-        return view('chefs.cheflayout');
+        return view('chefs.plats');
     }
 }

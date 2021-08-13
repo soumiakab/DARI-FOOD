@@ -59,7 +59,7 @@ class ChefController extends Controller
         $new_name = rand() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('ressources\images'), $new_name);
 
-            return User::create([
+        $user= User::create([
                 'firstname' => $request->input('firstname'),
                 'lastname' => $request->input('lastname'),
                 'username' => $request->input('username'),
@@ -72,6 +72,9 @@ class ChefController extends Controller
                 'adress_id' =>$adress->id,
 
             ]);
+
+            Auth::guard()->login($user);
+            return redirect()->route('chef.route');
 
     }
 

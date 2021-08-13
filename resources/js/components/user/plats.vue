@@ -3,28 +3,12 @@
     <div class="row">
       <div class="col-12">
         <ul class="nav" >
-            <li class="nav-item categorie m-2 btn btn-danger "  @click="categ('')">
+            <li class="nav-item categorie m-2  btn btn-danger "  @click="categ('')">
                 Tout
             </li>
             <li  v-for="cat in categories" v-bind:key="cat.id" class="nav-item categorie m-2 btn filter" @click="categ(cat.name)">
                 {{cat.name}}
             </li>
-            <!-- <li class="nav-item categorie  m-2 btn filter">
-                pastilas
-            </li>
-            <li class="nav-item categorie  m-2 btn filter">
-                boissants
-            </li>
-            <li class="nav-item categorie  m-2 btn filter">Salades Marocaines</li>
-            <li class="nav-item categorie  m-2 btn filter">Sucre</li>
-            <li class="nav-item categorie  m-2 btn filter">briouats</li>
-            <li class="nav-item categorie  m-2"></li>
-            <li class="nav-item categorie  m-2"></li>
-            <li class="nav-item categorie  m-2"></li>
-            <li class="nav-item categorie  m-2"></li>
-            <li class="nav-item categorie  m-2"></li>
-            <li class="nav-item categorie  m-2"></li>
-            <li class="nav-item categorie  m-2"></li> -->
           </ul>
       </div>
       <div class="col-3"></div>
@@ -55,6 +39,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -117,6 +102,13 @@ export default {
         },
         categ(val){
             this.category=val;
+
+                $( 'ul.nav li' ).on( 'click', function () {
+                    $( 'ul.nav' ).find( 'li.btn-danger' ).removeClass( 'btn-danger' ).addClass( 'filter' );
+                    $( this ).removeClass( 'filter' );
+                    $( this ).addClass( 'btn-danger' );
+                });
+
         },
         platdetails(){
 

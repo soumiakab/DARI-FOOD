@@ -12,7 +12,7 @@
                 </div>
 
                 <div v-for="(plat,index) in plats" :key="index" class="row border-top border-bottom" >
-                    <wishEl :plat="plat" :platid="plat.id" />
+                    <wishEl :plat="plat" :platid="plat.id"  @myEvent="getAll" />
                 </div>
 
                    <div class="back-to-shop">

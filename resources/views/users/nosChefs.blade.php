@@ -5,12 +5,12 @@
     @foreach($chefs as $chef)
 
         <div class="col-md-4 mb-md-0 mt-3">
-           <div class="card d-flex flex-column align-items-center justify-content-center">
+           <div class="card d-flex flex-column align-items-center justify-content-center shadow">
                <div class="inner-content d-flex flex-column align-items-center justify-content-center">
                    <div class="img-container rounded-circle"> <img src="{{ asset('ressources/'.$chef->photo) }}" alt="" class="rounded-circle"> </div>
                    <div class="h3">Chef {{$chef->firstname}}</div>
                    <p class="designation text-muted text-uppercase px-2">{{substr($chef->description,0,10)}}... </p>
-                   <a  href="{{'chef/profil/'.$chef->id}}" class="btn btn-danger">profil</a>
+                   <a  href="{{route('profilchef',$chef->id)}}" class="btn btn-danger">profil</a>
                </div>
 
 

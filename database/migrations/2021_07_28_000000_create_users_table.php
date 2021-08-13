@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('tel');
             $table->string('password');
-            $table->string('description')->nullable();
+            $table->string('description',10000)->nullable();
             $table->integer('isChef')->default('0');
             $table->string('photo')->default('images/user.jpg');
             $table->bigInteger('address_id')->unsigned();

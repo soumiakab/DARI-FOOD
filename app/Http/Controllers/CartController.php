@@ -36,12 +36,18 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $id=$request->platid;
+        $this->add($id,$request->quantite);
+    }
+
+
+    public function add($id,$qt)
+    {
         $plat = Plat::findOrFail($id);
         $find=false;
         $cart = session()->get('cart', []);
         for ($i=0; $i < count($cart) ; $i++) {
             if($cart[$i]['id'] == $id) {
-                $cart[$i]['quantity']+=$request->quantite;
+                $cart[$i]['quantity']+=$qt;
                 $find=true;
                 break;
             }
@@ -50,14 +56,14 @@ class CartController extends Controller
             $cart[$i] = [
                 "id"=>$id,
                 "name" => $plat->name,
-                "quantity" => $request->quantite,
+                "quantity" => $qt,
                 "price" =>(float) $plat->price,
                 "image" => $plat->imag
             ];
         }
 
         session()->put('cart', $cart);
-        // return redirect()->back()->with('success', 'Produit ajouté au panier avec succès !');
+        return redirect()->back();
     }
 
     public function panierData()

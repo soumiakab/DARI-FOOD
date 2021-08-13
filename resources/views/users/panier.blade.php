@@ -5,7 +5,7 @@
         <panier/>
     </div>
     <div class="row px-5">
-    <a href="/savecommand" class="btn " >Passer la commande</a>
+    <a href="{{route('checkout')}}" class="btn " >Passer la commande</a>
 
     </div>
 </div>

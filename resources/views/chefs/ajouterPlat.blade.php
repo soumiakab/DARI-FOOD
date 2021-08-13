@@ -1,7 +1,7 @@
 @extends('chefs.cheflayout')
 
 @section('content')
-    <form action="{{ route('plat.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('plat.store') }}" class="shadow p-5" method="post" enctype="multipart/form-data">
                 @csrf
         <div class="form-group">
             <label for="first-name">Nom du plat:</label>
@@ -31,7 +31,7 @@
             <label for="exampleFormControlTextarea2">Description</label>
             <textarea class="form-control rounded-0" name="description" id="exampleFormControlTextarea2" rows="5"></textarea>
         </div>
-        <input type="submit" value="Ajouter" class="btn btn-primary">
+        <input type="submit" value="Ajouter" class="btn btn-danger mt-3 mb-5">
     </form>
 
 @endsection

@@ -6,7 +6,11 @@
 
     <div class="card ">
         <div class="card-body stat">
-           <p>{{$chefs}} chefs</p>
+            <div class="row justify-content-between  p-2">
+                <p>Nombre total des chefs</p>
+                <span>{{$chefs}}</span>
+            </div>
+
         </div>
     </div>
 
@@ -18,7 +22,10 @@
 
     <div class="card ">
         <div class="card-body stat">
-           <p>{{$plats}} plats</p>
+        <div class="row justify-content-between  p-2">
+                <p>Nombre total des plats</p>
+                <span>{{$plats}}</span>
+            </div>
         </div>
     </div>
 
@@ -29,7 +36,10 @@
 
     <div class="card ">
         <div class="card-body stat">
-           <p>{{$users}} utilisateurs </p>
+        <div class="row justify-content-between  p-2">
+                <p>Nombre total des utilisateurs</p>
+                <span>{{$users}}</span>
+            </div>
         </div>
     </div>
 
@@ -39,7 +49,10 @@
 
     <div class="card ">
         <div class="card-body stat">
-           <p>{{$orders}} plats commander</p>
+        <div class="row justify-content-between  p-2">
+                <p>Nombre total des plats commander</p>
+                <span>{{$orders}}</span>
+            </div>
         </div>
     </div>
 

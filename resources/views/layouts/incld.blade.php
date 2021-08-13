@@ -79,7 +79,7 @@
 
 <!-- debut footer -->
 
-<div class="footer-dari">
+<div class="footer-dark">
     <footer>
         <div class="container">
             <div class="row">

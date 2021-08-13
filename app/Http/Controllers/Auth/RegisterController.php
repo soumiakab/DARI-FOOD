@@ -74,22 +74,7 @@ class RegisterController extends Controller
         $adress->zipcode=$data['zipcode'];
         $adress->adress=$data['adress'];
         $adress->save();
-        // if($data['description']){
-        //     return User::create([
-        //         'firstname' => $data['firstname'],
-        //         'lastname' => $data['lastname'],
-        //         'username' => $data['username'],
-        //         'tel' => $data['tel'],
-        //         'email' => $data['email'],
-        //         'password' => Hash::make($data['password']),
-        //         'description' =>$data['description'],
-        //         'photo' =>$adress->id,
-        //         'isChef'=>1,
-        //         'address_id' =>$adress->id,
-
-        //     ]);
-        // }
-        // else{
+        
             return User::create([
                 'firstname' => $data['firstname'],
                 'lastname' => $data['lastname'],
@@ -100,6 +85,6 @@ class RegisterController extends Controller
                 'adress_id' =>$adress->id,
 
             ]);
-        // }
+
     }
 }

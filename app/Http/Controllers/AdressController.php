@@ -12,9 +12,10 @@ class AdressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $adress=Adress::find($id);
+        return view('chefs.adress',["adress"=>$adress]);
     }
 
     /**

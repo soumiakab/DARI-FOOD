@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\order;
+use App\Models\Plat;
 use Illuminate\Http\Request;
 use Auth;
 class OrderController extends Controller
@@ -47,16 +48,18 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeOrd($id)
+    public function storeOrd($id,$adress,$livraison)
     {
         $cart = session()->get('cart');
         for ($i=0; $i < count($cart) ; $i++) {
+            $plat=Plat::find($cart[$i]['id']);
             Order::create([
                 'command_id'=>$id,
                 'plat_id'=>$cart[$i]['id'],
                 'quantity'=>$cart[$i]['quantity'],
-                'user_id'=>1,
-                'adress_id'=>1
+                'user_id'=>$plat->user_id,
+                'adress_id'=>$adress,
+                'date_livraison'=>$livraison,
             ]);
         }
 

@@ -17,26 +17,37 @@
 </head>
 <body>
 <!-- debut corps -->
-<div class="container-fluid">
-    <div class="dash">
-        <p>
-            <img src="{{ asset('ressources/images/logo.png')}}" alt="image" class="" width="40%">
-
+<div class="container-fluid admindash">
+    <div class="dash shadow align-items-end">
+        <p><a  href="/">
+            <img src="{{ asset('ressources/images/logo.png')}}" alt="image" class="" width="30%">
+</a>
         </p>
-        <ul class="mt-5">
-            <li class="mb-3 ml-3"><a href="{{route('command.index')}}">Mes commandes</a></li>
-            <li class="mb-3 ml-3"><a href="{{route('plat.create')}}">Ajouter un Plat </a></li>
-            <li class="mb-3 ml-3"><a href="{{route('plat.index')}}">Mes Plats </a></li>
-            <li class="mb-3 ml-3"><a href="{{url('/profilchef')}}">Mes informations</a></li>
+        <ul class="mt-5 pt-2">
+            <li class="mb-3 {{(request()->segment(1) == 'command') ? 'actv' : ''}}"><a href="{{route('command.index')}}">Mes commandes</a></li>
+            <li class="mb-3 {{(request()->segment(2) == 'create') ? 'actv' : ''}}"><a href="{{route('plat.create')}}">Ajouter un Plat </a></li>
+            <li class="mb-3 {{(request()->segment(1) == 'plat' && request()->segment(2)==null) ? 'actv' : ''}}"><a href="{{route('plat.index')}}">Mes Plats </a></li>
+            <li class="mb-3 {{(request()->segment(1) == 'profilchef') ? 'actv' : ''}}"><a href="{{url('/profilchef')}}">Mes informations</a></li>
         </ul>
+
+
     </div>
-    <div class="row justify-content-end panel p-2 pr-4">
-        <a  href="{{ route('logout') }}" class=""   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" style="text-decoration: none; color: rgb(255, 255, 255);">logout</a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>
-    </div>
+    <div class="row justify-content-end panel shadow p-2 pr-4">
+    <a href="#menu-t" class="btn btn-default" id="menu-t"><em class="fa fa-bars"></em></a>
+    <div class="dropdown user-dropdown  text-md-right"><a class="btn btn-stripped dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img src="{{asset('ressources/'.Auth::user()->photo) }}" alt="profile photo" class="circle float-left profile-photo" width="30px" height="auto">
+						<div class="username mt-1">
+							<h6 class="mb-1">{{Auth::user()->username}}</h6>
+						</div>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" style="margin-right: 1.5rem;" aria-labelledby="dropdownMenuLink">
+							 <a class="dropdown-item logout" href="{{ route('logout') }}"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><em class="fa fa-power-off mr-1"></em>Se deconnecter</a></div>
+					</div>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
    <div class="content">
    @yield('content')
 
@@ -45,6 +56,12 @@
 
 </div>
 <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+<script>
+    $("#menu-t").click(function(e) {
+        e.preventDefault();
+        $(".admindash").toggleClass("dashmobile");
+    });
 
+</script>
 </body>
 </html>

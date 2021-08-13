@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Command;
+use App\Models\Adress;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Controllers\OrderController;
@@ -29,7 +30,7 @@ class CommandController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.checkout');
     }
 
     /**
@@ -38,63 +39,41 @@ class CommandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storecommand()
+    public function storecommand(Request $request)
     {
+
         if(Auth::user()){
+            $cart = session()->get('cart');
+            if(isset($cart) && count($cart)>0){
+                                $command=new Command();
+                                $command->user_id=Auth::user()->id;
+                                $command->save();
+                    if($request->input('adress')){
+                        $adress=new Adress();
+                        $adress->street=$request->input('street');
+                        $adress->zipcode=$request->input('zipcode');
+                        $adress->adress=$request->input('adress');
+                        $adress->save();
 
-            $command=new Command();
-            $command->user_id=Auth::user()->id;
-            $command->status='0';
-            $command->save();
-            // Redirecting To Controller Actions with params
-            return redirect()->action(
-                [OrderController::class, 'storeOrd'], $command->id
-            );
+                                // Redirecting To Controller Actions with params
+                                return redirect()->action([OrderController::class, 'storeOrd'],['id' => $command->id,'adress' =>$adress->id,'livraison'=>$request->input('livraison')]
+                                );
+
+                    }
+                    else{
+                            // Redirecting To Controller Actions with params
+                            return redirect()->action([OrderController::class, 'storeOrd'],['id' => $command->id,'adress' =>Auth::user()->adress_id,'livraison'=>$request->input('livraison')]
+                            );
+
+
+                }
+            }
+
         }
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Command  $command
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Command $command)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Command  $command
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Command $command)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Command  $command
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Command $command)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Command  $command
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Command $command)
-    {
-        //
-    }
+    
 }

@@ -28,7 +28,7 @@ Vue.component('panierEl', require('./components/user/panierEl').default);
 Vue.component('wishes', require('./components/user/wishes').default);
 Vue.component('wishEl', require('./components/user/wishEl').default);
 Vue.component('cart', require('./components/user/cart').default);
-
+Vue.component('pagination', require('laravel-vue-pagination'));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

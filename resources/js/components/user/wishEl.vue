@@ -1,9 +1,9 @@
 <template>
 
     <div class="row main align-items-center">
-            <div class="col-2"><img class="img-fluid" :src="'resource/'+plat.imag" alt="platimage"/></div>
+            <div class="col-2"><a style="padding:0;" :href="'user/platdetails/'+plat.id" ><img class="img-fluid" :src="'resource/'+plat.imag" alt="platimage"/></a></div>
             <div class="col">
-                <div class="row text-muted">{{plat.name}}</div>
+                <div class="row text-muted"><a style="padding:0;" :href="'user/platdetails/'+plat.id" >{{plat.name}}</a></div>
             </div>
             <div class="col">{{plat.price}} DH</div>
             <div class="col" data-id="1"><span class="delet" style="cursor:pointer" @click="removeWish(plat.id)">&#10005;</span></div>
@@ -27,8 +27,6 @@ export default {
             let response= await axios.post('/remove-wish',{'platid':x});
             console.log(response.data);
             this.$emit('myEvent');
-            window.location.reload();
-
         },
     },
 }

@@ -1,15 +1,14 @@
 <template>
 
     <div class="row main align-items-center">
-            <div class="col-2"><img class="img-fluid" :src="'resource/'+plat.image" alt="platimage"/></div>
-            <div class="col">
-                <div class="row text-muted">{{plat.name}}</div>
-                <div class="row">Categorie</div>
+
+            <div class="col-3">
+                <div class="row text-muted align-items-center"><img class="img-fluid" :src="'resource/'+plat.image" alt="platimage"/>{{plat.name}}</div>
             </div>
-            <div class="col">{{plat.price}} DH</div>
-            <div class="col" data-id="1"><p><quantite :qty="plat.quantity" @qt="getQt"/></p></div>
-            <div class="col" >{{subTotal}}</div>
-            <div class="col" data-id="1"><span class="delet" style="cursor:pointer" @click="removeCom">&#10005;</span></div>
+            <div class="col-2">{{plat.price}} DH</div>
+            <div class="col-4"><p><quantite :qty="plat.quantity" @qt="getQt"/></p></div>
+            <div class="col-2" >{{subTotal}}</div>
+            <div class="col-1" data-id="1"><span class="delet" style="cursor:pointer" @click="removeCom">&#10005;</span></div>
     </div>
 </template>
 <script>

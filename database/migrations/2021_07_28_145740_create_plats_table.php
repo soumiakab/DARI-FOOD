@@ -17,11 +17,11 @@ class CreatePlatsTable extends Migration
             $table->id();
             $table->string('name');
             $table->float('price');
-            $table->string('description');
+            $table->text('description');
             $table->string('imag');
             $table->bigInteger('category_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
-            $table->integer('nbr_pers')->unsigned();
+            $table->integer('nbr_pers');
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');

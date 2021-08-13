@@ -27,7 +27,7 @@
 </div>
 
 <div class="table-responsive">
-<table class="table table-sm table-dark ">
+<table class="table table-sm  ">
   <thead>
     <tr>
       <th scope="col">Categorie</th>
@@ -40,7 +40,7 @@
         <tr>
             <td>{{$category->name}}</td>
             <td>{{count($category->plats())}}</td>
-            <td> <a href="{{route('admin-category.edit',$category->id)}}" class="btn btn-primary m-2">Modifier</a></td>
+            <td> <a href="{{route('admin-category.edit',$category->id)}}" class="btn btn-primary m-2">Modifier</a> &nbsp; <a href="{{route('admin-category.edit',$category->id)}}" class="btn btn-danger m-2">Supprimer</a></td>
         </tr>
     @endforeach
   </tbody>

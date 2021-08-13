@@ -14,6 +14,7 @@
                               <p>{{$plat->description}}
                                 </p>
 
+                                <p class="btn-holder"><a href="{{ route('add',['id'=>$plat->id,'qt'=>1]) }}"  class="btn btn-danger btn-block text-center" role="button">Ajouter au panier</a> </p>
 
                           </div>
                       </div>
@@ -63,6 +64,7 @@
                             <div class="img-container rounded-circle"> <img src="{{ asset('ressources/'.$plat->user->photo) }}" alt="" class="rounded-circle"> </div>
                             <div class="h3">chef {{$plat->user->firstname}}</div>
                             <p class="designation text-muted text-uppercase">{{substr($plat->user->description,0,10)}}...</p>
+                            <a  href="{{route('profilchef',$plat->user->id)}}" class="btn btn-danger">profil</a>
                         </div>
 
                     </div>
